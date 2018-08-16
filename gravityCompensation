@@ -1,6 +1,6 @@
 Gravity Compensation 
 
-VectorXd Dynamics::g(const VectorXd q){
+g(const VectorXd q){
 
 	/*Matrix4d T_flange;
 	T_flange<<1,0,0,0,
@@ -95,4 +95,25 @@ VectorXd Dynamics::g(const VectorXd q){
 	
 	return out_torque;
 
+}
+
+
+get_A( double theta, const int Axis_No) {
+		
+	double cosA = cos( alpha[Axis_No-1] );
+	double sinA = sin( alpha[Axis_No-1] );
+	double cosT = cos( theta );
+	double sinT = sin( theta );
+	double D = d[Axis_No-1];
+	double A = a[Axis_No-1];
+
+	
+
+	Matrix4d result;
+	result << cosT,			-sinT,		0,	 	A,
+			sinT*cosA,	cosT*cosA,	-sinA,	-sinA*D,
+			sinT*sinA,	cosT*sinA,	cosA,	cosA*D,
+			0,			0,			0,		1;
+
+	return result;	
 }
