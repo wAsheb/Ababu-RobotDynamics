@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Eigen\Dense"
-#include "MathTool.h"
+
 //#include "Dynamics.h"
 //#include "Kinematics.h"
 
