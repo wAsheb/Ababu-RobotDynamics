@@ -145,7 +145,7 @@ VectorXd Impedance::calculateForceTorq(
 	const Vector3d & N_ex)
 {
 
-	// 量時間
+	// time
 	/*LARGE_INTEGER timeStart;	
 	RtGetClockTime(CLOCK_2,&timeStart);*/
 
@@ -153,7 +153,7 @@ VectorXd Impedance::calculateForceTorq(
 	matJd = jcb->getJd(q,qd);
 
 	
-	// 量時間
+	// time
 	/*LARGE_INTEGER timeEnd1;
 	double calTime1;
 	RtGetClockTime(CLOCK_2,&timeEnd1);
@@ -164,7 +164,7 @@ VectorXd Impedance::calculateForceTorq(
 	PoseE = FKI(q, qd);
 
 
-	// 量時間
+	// time
 	/*LARGE_INTEGER timeEnd2;
 	double calTime2;
 	RtGetClockTime(CLOCK_2,&timeEnd2);
@@ -173,7 +173,7 @@ VectorXd Impedance::calculateForceTorq(
 
 	forcePose(PoseC_prev,PoseD,F_d,N_d,F_ex, N_ex);
 
-	// 量時間
+	// time
 	/*LARGE_INTEGER timeEnd3;
 	double calTime3;
 	RtGetClockTime(CLOCK_2,&timeEnd3);
@@ -181,7 +181,7 @@ VectorXd Impedance::calculateForceTorq(
 
 	f_accs  = forcePoseControl(PoseD,PoseE); 
 	
-	// 量時間
+	// time
 	/*LARGE_INTEGER timeEnd4;
 	double calTime4;
 	RtGetClockTime(CLOCK_2,&timeEnd4);
@@ -201,7 +201,7 @@ VectorXd Impedance::calculateForceTorq(
 //======================================================================================================================================
 	
 	
-	// 量時間
+	// time
 	/*LARGE_INTEGER timeEnd5;
 	double calTime5;
 	RtGetClockTime(CLOCK_2,&timeEnd5);
@@ -209,7 +209,7 @@ VectorXd Impedance::calculateForceTorq(
 
 	f_torque = dyn->inv(q, qd, f_qdd, F_ex, N_ex);
 
-	// 量時間
+	// time
 	/*LARGE_INTEGER timeEnd6;
 	double calTime6;
 	RtGetClockTime(CLOCK_2,&timeEnd6);
