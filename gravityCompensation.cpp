@@ -28,10 +28,7 @@ g(const VectorXd q){
 		P[i]	= T[i].block<3,1>(0,3);		
 	}
 
-	/*static int count = 0;
-	if(count++ >100) count = 0;
-	if(count == 0)
-		Log::write(3, "bi[i],%lf, %lf,%lf,\n ", bi[2](0), bi[2](1),bi[2](2));*/
+	
 
 	// joint angular velocity & acceleration, and acceleration of center of mass
 	//Vector3d v1, v2, v3, v4;
