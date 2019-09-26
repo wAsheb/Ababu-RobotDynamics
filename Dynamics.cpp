@@ -158,7 +158,7 @@ VectorXd Dynamics::inv(
 
 	}
 		
-	// backwards iteration
+	// backwards iteration starting from last link(TCP) to base joint
 	VectorXd out_torque = VectorXd::Zero(6);
 	MatrixXd temp;
 	Matrix3d t1;
@@ -208,6 +208,7 @@ VectorXd Dynamics::inv(
 	
 	return out_torque;
 }
+//this emperical torque to account unmodeled effect such as friction at joints
 VectorXd Dynamics::auxilaryTorque(const VectorXd qd){
 
 	VectorXd auxilaryAid = VectorXd::Zero(6);
@@ -227,7 +228,8 @@ VectorXd Dynamics::auxilaryTorque(const VectorXd qd){
 		return auxilaryAid;
 
 }
-
+//this is to considering only the gravity term of total torque at each joint
+//call this in hand guide mode
 VectorXd Dynamics::g(const VectorXd q){
 
 	/*Matrix4d T_flange;
@@ -329,7 +331,7 @@ VectorXd Dynamics::g(const VectorXd q){
 	return out_torque;
 
 }
-
+//Transformation matrix from joint (i-1) to i
 Matrix4d Dynamics::get_A( int Axis_No)
 {
 	return matA[Axis_No];
@@ -339,6 +341,7 @@ void Dynamics::cal_allA(const VectorXd q)
 	for(int i = 1; i<=dof; i++)
 		matA[i] = get_A(q[i-1], i);
 }
+//helper
 int Dynamics::sign( double value)
 {
 	if (value > 0)
@@ -352,7 +355,7 @@ int Dynamics::sign( double value)
 	else 
 		return 0;
 }
-
+//static define 6-axis robot arm used for testing. change it to your robot physical property 
 double d[7] = {-0.423, 0.0,0.0, -0.284, 0.0,0.2305,0};// index 6 not used d6 =0.0905
 double a[7] = {0,0.105,0.2800,0.065,0.0,0.0,0.0};// index 6 not used
 double alpha[7] = {PI, PI/2.0, 0.0, PI/2.0, -PI/2.0, -PI/2.0, 0.0}; //is alpha[5] is - / +
