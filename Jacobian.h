@@ -7,6 +7,7 @@ using namespace Eigen;
 
 #define TINY_VALUE 1e-10;
 
+//Mostly used from d P(q)/dq assuming TCP position is function of joint angle
 class Jacobian
 {
 public:
