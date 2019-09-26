@@ -1,7 +1,8 @@
 #include "Impedance.h"
 #include <iostream>
 using namespace std;
-
+//Compliance control of robot arm through impedance algorithms
+// The robot is modeled as spring damper system. Thus mostly PID sort of controller implmented
 //Matrix4d get_A2( double theta, const int Axis_No);
 
 Impedance::Impedance(void)
@@ -82,6 +83,7 @@ Impedance::~Impedance(void)
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Direct Force control ~~~~~~~~~~~~~~~~~~~~~~~~~
+// applies direct force control at Robot-Environment interaction
 void Impedance::calculateForceTorq( double* out_Torq,
 							 const PoseDeriv & PoseD,	const double* F_d, const double* N_d,
 							 const double* q,		const double* qd,     const double* F_ex,
@@ -227,7 +229,7 @@ VectorXd Impedance::calculateForceTorq(
 	return f_torque;
 
 }
-	
+// Handle slaw force sensor	
 void Impedance::initialzero()
 {//force control
 		PoseC.p  = Vector3d::Zero();
