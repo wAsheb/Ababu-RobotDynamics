@@ -9,7 +9,7 @@ Dynamics::Dynamics(int dof)
 	this->dof	= dof;
 	Identity_3x3= Matrix3d::Identity();
 	Zero_3		= Vector3d::Zero();
-	z0			= Vector3d(0,0,1);
+	z0		= Vector3d(0,0,1);
 
 	Roi		= new Matrix3d[dof+1];
 	Rt		= new Matrix3d[dof+1];
@@ -17,14 +17,14 @@ Dynamics::Dynamics(int dof)
 	bi		= new Vector3d[dof+1];
 	P		= new Vector3d[dof+1];
 	Omg		= new Vector3d[dof+1];
-	Omg_d	= new Vector3d[dof+1];
+	Omg_d	        = new Vector3d[dof+1];
 	Ae		= new Vector3d[dof+1];
 	Ac		= new Vector3d[dof+1];
 	Fs		= new Vector3d[dof+1];
 	Fc		= new Vector3d[dof+1];
 	Ns		= new Vector3d[dof+1];
 	Nc		= new Vector3d[dof+1];
-	matA	= new Matrix4d[dof+1];
+	matA	        = new Matrix4d[dof+1];
 
 	q_Vec	= VectorXd(dof);
 	qd_Vec	= VectorXd(dof);
