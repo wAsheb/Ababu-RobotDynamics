@@ -189,17 +189,7 @@ VectorXd Dynamics::inv(
 				
 				double jgr = DYN.JointGearRatio(i);
 				
-				/*int SIGN;
-				
-				if(qd(i-1) > 0){
-					
-					SIGN = 1;
-				
-				}if (qd(i-1) < 0){
-					
-					SIGN = -1;
-				}else
-					SIGN = 0;*/
+
 				
 		out_torque(i-1) = temp(0,0)
 						+ DYN.MotorInertia(i)*jgr*jgr*qdd(i-1)
@@ -372,10 +362,10 @@ Matrix4d Dynamics::get_A( double theta, const int Axis_No) {
 	
 
 	Matrix4d result;
-	result << cosT,			-sinT,		0,	 	A,
-			sinT*cosA,	cosT*cosA,	-sinA,	-sinA*D,
-			sinT*sinA,	cosT*sinA,	cosA,	cosA*D,
-			0,			0,			0,		1;
+	result << cosT,		-sinT,		0,	 	A,
+		  sinT*cosA,	cosT*cosA,	-sinA,	  -sinA*D,
+		  sinT*sinA,	cosT*sinA,	cosA,	  cosA*D,
+		  0,			0,	0,		1;
 
 	return result;	
 }
