@@ -175,19 +175,9 @@ VectorXd Impedance::calculateForceTorq(
 
 	forcePose(PoseC_prev,PoseD,F_d,N_d,F_ex, N_ex);
 
-	// time
-	/*LARGE_INTEGER timeEnd3;
-	double calTime3;
-	RtGetClockTime(CLOCK_2,&timeEnd3);
-	calTime3 = double(timeEnd3.QuadPart - timeEnd2.QuadPart)/(10);*/
 
 	f_accs  = forcePoseControl(PoseD,PoseE); 
 	
-	// time
-	/*LARGE_INTEGER timeEnd4;
-	double calTime4;
-	RtGetClockTime(CLOCK_2,&timeEnd4);
-	calTime4 = double(timeEnd4.QuadPart - timeEnd3.QuadPart)/(10);*/
 
 
 	// *** qdd = matJ.inverse()*(accs - matJd * qd); //***
@@ -216,20 +206,12 @@ VectorXd Impedance::calculateForceTorq(
 	double calTime6;
 	RtGetClockTime(CLOCK_2,&timeEnd6);
 	calTime6 = double(timeEnd6.QuadPart - timeEnd5.QuadPart)/(10);	*/
-
-	//static int count = 0;
-	//count++;
-	////if(count++ >500)count = 0;
-	//if(count< 50){
-	//Log::write(1, "Time:calculateTorq: ,%lf, %lf, %lf, %lf, %lf, %lf", calTime1, calTime2, calTime3, calTime4, calTime5, calTime6);
-	//Log::writeln(1, ", TotalTime, %lf",calTime1 + calTime2 + calTime3 + calTime4 + calTime5 + calTime6);
-	//}
 	
 	
 	return f_torque;
 
 }
-// Handle slaw force sensor	
+// Handle slow force sensor	
 void Impedance::initialzero()
 {//force control
 		PoseC.p  = Vector3d::Zero();
@@ -250,34 +232,7 @@ void Impedance::forcePose(PoseDeriv &PoseC_prev,const PoseDeriv &PoseD,const Vec
 	//if(countt == 0)
 	//	Log::writeln(0, "kv = %lf\n", K_Vf(2,2));
 
-	//Quaterniond qt;
-	//static bool first = true;
-	//if(first)
-	//{
-	//	PoseC.p			= PoseD.p;
-	//	PoseC.qt		= PoseD.qt;
-	//	PoseC.qtd		= quatDerivative(PoseC.w, PoseC.qt);
-	//	PoseC_prev.qtd	= PoseC.qtd;
-
-	//	PoseC.wd		= PoseD.wd;
-	//	PoseC.w			= PoseD.w;
-	//	first = false; 
-	//}
-
-	// set new value //20170829
-	/*K_Af(3,3) = shm->afValue;
-	K_Vf(3,3) = shm->vfValue; */
-
-	//if(PoseC.qt.dot(PoseD.qt) < 0){ // if <0, multiply PoseD.qt
-	//	
-	//		qt.w()	 = PoseD.qt.w()*-1;
-	//		qt.vec() = PoseD.qt.vec()*-1;
-
-	//}
-	//else {
-	//	
-	//	qt = PoseD.qt;
-	//}
+	
 	//Qdc = Qc.inverse()*Qd  quaternion based endeffector orientation
 	// use PoseCD for consistance with Impedance case, otherwise in actual PoseDC(PoseD - PoseC) is computed
 
@@ -320,10 +275,6 @@ void Impedance::forcePose(PoseDeriv &PoseC_prev,const PoseDeriv &PoseD,const Vec
 	integrate(PoseC.qt, PoseC_prev.qtd, PoseC.qtd);
 
 	//to prevent the jittering at start and end of new motion
-
-
-	//PoseF_prev = PoseF;
-	//PoseC_prev = PoseC;
 
 	/*static int countt = 0;
 	if(countt++ >3000) countt = 0;
