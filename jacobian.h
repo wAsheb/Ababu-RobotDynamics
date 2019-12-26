@@ -110,13 +110,14 @@ void Jacobian::calJ(const VectorXd &q){
 }
 
 
-
+//derivative of the jacobian dJ(q)/dq
 MatrixXd Jacobian::getJd( const VectorXd& q, const VectorXd& qd)
 {
 	Vector3d temp1,temp3;
 	Matrix4d temp;
-
-	Vector3d O_endeffectToJointi, pd_endeffectorJointiSpeed;
+      
+	//Orientation-joint i to TCP, speed joint-i to TCP
+	Vector3d O_endeffect2Jointi, pd_endeffector2JointiSpeed;
 	
 	/*Matrix4d T_flange;
 	T_flange<< 1,0,0,0,0,-1,0,0,0,0,-1,0,0,0,0,1;
@@ -148,8 +149,8 @@ MatrixXd Jacobian::getJd( const VectorXd& q, const VectorXd& qd)
 
 		//w[i] = w[i-1] + qd(i-1)*z[i];
 
-		O_endeffectToJointi = Oi[dof] - Oi[i];
-		pd_endeffectorJointiSpeed = pd[dof] - pd[i];
+		O_endeffect2Jointi = Oi[dof] - Oi[i];
+		pd_endeffector2JointiSpeed = pd[dof] - pd[i];
 				
 		temp1 = (R[i-1] * w[i-1]).cross(z[i]);
 		temp3 = temp1.cross(O_endeffectToJointi) + z[i].cross(pd_endeffectorJointiSpeed);
@@ -168,7 +169,7 @@ MatrixXd Jacobian::getJd( const VectorXd& q, const VectorXd& qd)
 
 	return Jmatd;
 }
-
+// inverse of jacobian for non-square matrix avoid numerical drifts
 MatrixXd Jacobian::DLSJacobInverse(VectorXd q){
 
 	//getJ(q);
