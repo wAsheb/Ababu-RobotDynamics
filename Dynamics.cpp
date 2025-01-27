@@ -203,11 +203,11 @@ VectorXd Dynamics::auxilaryTorque(const VectorXd qd){
 
 	VectorXd auxilaryAid = VectorXd::Zero(6);
 	
-		double a_Factor[6]				= { 0.1,0.1,0.1,0.1,0.1,0.1}; //a
-		double K_Factor[6]				= {1000,100,100,1000,100,1000}; //k
-		double aidTorqueAxis[6]			= {300,300,300,300,300,300}; //J
-		double frictionPositive[6]		= {50,50,50,50,50,50};
-		double frictionNegative[6]      = {-50,-50,-50,-50,-50,-50};//
+		double a_Factor[6]	     = { 0.1,0.1,0.1,0.1,0.1,0.1}; //a
+		double K_Factor[6]	     = {1000,100,100,1000,100,1000}; //k
+		double aidTorqueAxis[6]	     = {300,300,300,300,300,300}; //J
+		double frictionPositive[6]   = {50,50,50,50,50,50};
+		double frictionNegative[6]   = {-50,-50,-50,-50,-50,-50};//
 
 		//T_aid = T0*(w/(aw^2+K)) w -angular speed
 
